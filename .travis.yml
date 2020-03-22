@@ -1,0 +1,14 @@
+os: osx
+osx_image: xcode11.3
+language: swift
+
+cache:
+directories:
+
+install:
+- bundle install --path .
+- brew install danger/tap/danger-swift
+
+script:
+- echo "Run danger"
+- danger-swift ci
