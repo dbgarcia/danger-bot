@@ -3,9 +3,9 @@ import Danger
 
 let danger = Danger()
 
-if danger.github.pullRequest.branch_for_base != "develop" {
-    fail("Please re-submit this PR to develop, we may have already fixed your issue.")
-}
+// if danger.github.pullRequest.branch_for_base != "develop" {
+//     fail("Please re-submit this PR to develop, we may have already fixed your issue.")
+// }
 
 // Pull request size
 let bigPRThreshold = 200
