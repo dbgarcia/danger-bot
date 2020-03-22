@@ -58,6 +58,11 @@ modified.forEach {
     }
 }
 
+if danger.git.modified_files.include? "Gemfile"
+  config_files = danger.git.modified_files.select { |path| path.include? "Gemfile" }
+  message "This PR changes #{ github.html_link(config_files) }"
+end
+
 // Coverage.xcodeBuildCoverage(.derivedDataFolder("Build"),  minimumCoverage: 50,  excludedTargets: ["DangerSwiftCoverageTests.xctest"])
 
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
