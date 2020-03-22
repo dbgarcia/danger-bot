@@ -6,6 +6,10 @@ directories:
 
 install:
 - bundle install --path .
+- echo "Install Danger"
+- brew install danger/tap/danger-swift
 
 script:
 - bundle exec danger
+- echo "Run danger"
+- danger-swift ci
