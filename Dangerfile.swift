@@ -41,4 +41,14 @@ if testFiles.isEmpty {
     warn("PR does not contain any files related to unit tests ✅ (ignore if your changes do not require tests)")
 }
 
+modified.forEach {
+    if $0.fileType == .podspec {
+        warn("\($0).podspec changed")
+    }
+
+    if $0.fileType == .lock {
+        warn("\($0)\($0.fileType) changed")
+    }
+}
+
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
