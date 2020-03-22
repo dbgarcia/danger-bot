@@ -42,13 +42,16 @@ if testFiles.isEmpty {
 }
 
 modified.forEach {
-    if $0.fileType == .podspec {
-        warn("\($0).podspec changed")
-    }
+    print("\($0)")
+    print("\($0.fileType)")
+    
+    // if $0.fileType == .podspec {
+    //     warn("\($0).podspec changed")
+    // }
 
-    if $0.fileType == .lock {
-        warn("\($0)\($0.fileType) changed")
-    }
+    // if $0.fileType == .lock {
+    //     warn("\($0)\($0.fileType) changed")
+    // }
 }
 
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
