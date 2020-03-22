@@ -6,6 +6,7 @@ cache:
 directories:
 
 install:
+- bundle install --path .
 - brew install danger/tap/danger-swift
 
 script:
