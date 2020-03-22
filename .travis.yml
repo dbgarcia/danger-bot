@@ -5,9 +5,7 @@ cache:
 directories:
 
 install:
-# Grab the latest Danger JS from npm
-- npm install -g danger
+- bundle install --path .
 
 script:
-# Run the Dangerfile.swift
-- swift run danger-swift ci
+- bundle exec danger pr https://github.com/dbgarcia/danger-bot/pull/2
