@@ -43,9 +43,6 @@ if testFiles.isEmpty {
 
 modified.forEach {
     warn("\($0)")
-    warn("\($0.fileType!)")
-    warn("\($0.fileType!.rawValue)")
-    warn("\($0.fileType!.extension)")
 
     if let fileTypeModified = $0.fileType, fileTypeModified.extension == "podspec" {
         warn("#{danger.git.html_link('\($0)'')}")
