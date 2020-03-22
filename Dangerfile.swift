@@ -4,9 +4,9 @@ import Danger
 
 let danger = Danger()
 
-if danger.git.branch_for_base != "develop" {
-    fail("Please re-submit this PR to develop, we may have already fixed your issue.")
-}
+// if danger.git.branch_for_base != "develop" {
+//     fail("Please re-submit this PR to develop, we may have already fixed your issue.")
+// }
 
 // Pull request size
 let bigPRThreshold = 200
@@ -50,7 +50,7 @@ modified.forEach {
     }
 
     if $0 == "Gemfile" || $0 == "Gemfile.lock" {
-        warn("#{danger.git.html_link('Gemfile.lock')} ")
+        warn("#{danger.github.html_link("Gemfile")} was edited.")
     }
 
     if $0 == "Podfile" || $0 == "Podfile.lock" {
