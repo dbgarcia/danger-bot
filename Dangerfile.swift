@@ -51,11 +51,11 @@ modified.forEach {
         warn("#{danger.git.html_link('\($0)'')}")
     }
 
-    if $0 == "Gemfile" || if $0 == "Gemfile.lock" {
+    if $0 == "Gemfile" || $0 == "Gemfile.lock" {
         warn("#{danger.git.html_link('Gemfile.lock')} ")
     }
 
-    if $0 == "Podfile" || if $0 == "Podfile.lock" {
+    if $0 == "Podfile" || $0 == "Podfile.lock" {
         warn("#{danger.git.html_link('Podfile')} was edited but #{danger.git.html_link('Podfile.lock')} wasn't. commit the #{danger.git.html_link('Podfile.lock')} changes.")
     }
 }
