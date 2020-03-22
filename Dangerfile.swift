@@ -1,6 +1,5 @@
 
 import Danger
-// import DangerSwiftCoverage
 
 let danger = Danger()
 
@@ -9,12 +8,12 @@ let danger = Danger()
 // }
 
 // Pull request size
-let bigPRThreshold = 200
+let bigPRThreshold = 600
 let additions = danger.github.pullRequest.additions!
 let deletions = danger.github.pullRequest.deletions!
 let changedFiles = danger.github.pullRequest.changedFiles!
 if (additions + deletions > bigPRThreshold) {
-    warn("PR size seems relatively large. ✂️ If this PR contains multiple changes, please split each into separate PR will helps faster, easier review.")
+    fail("PR size seems relatively large. ✂️ If this PR contains multiple changes, please split each into separate PR will helps faster, easier review.")
 }
 
 // Pull request body validation
@@ -27,11 +26,15 @@ let prTitle = danger.github.pullRequest.title
 if prTitle.contains("WIP") {
     warn("PR is classed as _Work in Progress_.")
 }
+
 if prTitle.count < 5 {
-    warn("PR title is too short. 🙏 Please use this format `[SDK-000] Your feature title` and replace `000` with Jira task number.")
+    fail("PR title is too short. 🙏 Please use this format `feature/NAME_000_TASK Your feature title` and replace `000` with Jira task number.")
 }
-if !prTitle.contains("[SDK-") {
-    warn("PR title does not containe the related Jira task. 🙏 Please use this format `[SDK-000] Your feature title` and replace `000` with Jira task number.")
+
+if !prTitle.contains("release/") {
+    if !prTitle.contains("feature/") {
+        warn("PR title does not containe the related Jira task. 🙏 Please use this format `feature/NAME_000_TASK Your feature title` and replace `000` with Jira task number.")
+    }
 }
 
 // Files changed and created should includes unit tests
@@ -57,12 +60,5 @@ modified.forEach {
         warn("#{danger.git.html_link('Podfile')} was edited but #{danger.git.html_link('Podfile.lock')} wasn't. commit the #{danger.git.html_link('Podfile.lock')} changes.")
     }
 }
-
-if danger.git.modified_files.include? "Gemfile"
-  config_files = danger.git.modified_files.select { |path| path.include? "Gemfile" }
-  message("This PR changes #{ github.html_link(config_files) }")
-end
-
-// Coverage.xcodeBuildCoverage(.derivedDataFolder("Build"),  minimumCoverage: 50,  excludedTargets: ["DangerSwiftCoverageTests.xctest"])
 
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
