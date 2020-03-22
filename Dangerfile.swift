@@ -3,13 +3,15 @@ import Danger
 
 let danger = Danger()
 
+failure "Please re-submit this PR to develop, we may have already fixed your issue." if github.branch_for_base != "develop"
+
 // Pull request size
-let bigPRThreshold = 0
+let bigPRThreshold = 200
 let additions = danger.github.pullRequest.additions!
 let deletions = danger.github.pullRequest.deletions!
 let changedFiles = danger.github.pullRequest.changedFiles!
 if (additions + deletions > bigPRThreshold) {
-    warn("PR size seems relatively large. ✂️ If this PR contains multiple changes, please split each into separate PR will helps faster, easier review.")
+    fail("PR size seems relatively large. ✂️ If this PR contains multiple changes, please split each into separate PR will helps faster, easier review.")
 }
 
 // Pull request body validation
@@ -20,10 +22,10 @@ if danger.github.pullRequest.body == nil || danger.github.pullRequest.body!.isEm
 // Pull request title validation
 let prTitle = danger.github.pullRequest.title
 if prTitle.contains("WIP") {
-    warn("PR is classed as _Work in Progress_.")
+    fail("PR is classed as _Work in Progress_.")
 }
 if prTitle.count < 5 {
-    warn("PR title is too short. 🙏 Please use this format `[SDK-000] Your feature title` and replace `000` with Jira task number.")
+    fail("PR title is too short. 🙏 Please use this format `[SDK-000] Your feature title` and replace `000` with Jira task number.")
 }
 if !prTitle.contains("[SDK-") {
     warn("PR title does not containe the related Jira task. 🙏 Please use this format `[SDK-000] Your feature title` and replace `000` with Jira task number.")
