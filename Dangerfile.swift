@@ -43,7 +43,9 @@ if testFiles.isEmpty {
 
 modified.forEach {
     warn("\($0)")
-    warn("\($0.fileType ?? 'xx')")
+    warn("\($0.fileType!)")
+    warn("\($0.fileType!.rawValue)")
+    warn("\($0.fileType!.extension)")
 }
 
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
