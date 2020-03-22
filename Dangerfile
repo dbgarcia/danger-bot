@@ -6,7 +6,7 @@ declared_trivial = github.pr_title.include? "#trivial"
 warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
 
 # Warn when there is a big PR
-warn("Big PR") if git.lines_of_code > 300
+warn("Big PR") if git.lines_of_code > 1
 warn("Large PR") if git.lines_of_code > 500
 warn("Huge PR") if git.lines_of_code > 700
 warn("Freakin Huge PR") if git.lines_of_code > 1000
