@@ -3,8 +3,8 @@ import Danger
 
 let danger = Danger()
 
-if github.branch_for_base != "develop" {
-    warn("Please re-submit this PR to develop, we may have already fixed your issue.")
+if danger.github.branch_for_base != "develop" {
+    fail("Please re-submit this PR to develop, we may have already fixed your issue.")
 }
 
 // Pull request size
