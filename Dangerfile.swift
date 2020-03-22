@@ -62,3 +62,8 @@ modified.forEach {
 }
 
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
+
+slather.configure("/Users/douglas.garcia/Documents/GitHub/danger-bot/TravisBot/TravisBot.xcodeproj", "TravisBotTests")
+slather.notify_if_coverage_is_less_than(minimum_coverage: 80)
+slather.notify_if_modified_file_is_less_than(minimum_coverage: 60)
+slather.show_coverage
