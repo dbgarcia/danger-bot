@@ -1,11 +1,12 @@
 
 import Danger
+// import DangerSwiftCoverage
 
 let danger = Danger()
 
-// if danger.git.branch_for_base != "develop" {
-//     fail("Please re-submit this PR to develop, we may have already fixed your issue.")
-// }
+if danger.git.branch_for_base != "develop" {
+    fail("Please re-submit this PR to develop, we may have already fixed your issue.")
+}
 
 // Pull request size
 let bigPRThreshold = 200
@@ -56,5 +57,7 @@ modified.forEach {
         warn("#{danger.git.html_link('Podfile')} was edited but #{danger.git.html_link('Podfile.lock')} wasn't. commit the #{danger.git.html_link('Podfile.lock')} changes.")
     }
 }
+
+// Coverage.xcodeBuildCoverage(.derivedDataFolder("Build"),  minimumCoverage: 50,  excludedTargets: ["DangerSwiftCoverageTests.xctest"])
 
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
