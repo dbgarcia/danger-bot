@@ -50,7 +50,7 @@ modified.forEach {
     }
 
     if $0 == "Gemfile" || $0 == "Gemfile.lock" {
-        warn("#{danger.github.html_link("Gemfile")} was edited.")
+        warn("#{danger.github.html_link(\($0))} was edited.")
     }
 
     if $0 == "Podfile" || $0 == "Podfile.lock" {
