@@ -1,3 +1,4 @@
+rvm: 2.0.0
 os: osx
 osx_image: xcode11.3.1
 
@@ -8,4 +9,4 @@ install:
 - bundle install --path .
 
 script:
-- bundle exec danger pr https://github.com/dbgarcia/danger-bot/pull/2
+- bundle exec danger
