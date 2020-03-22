@@ -48,15 +48,15 @@ modified.forEach {
     warn("\($0.fileType!.extension)")
 
     if let fileTypeModified = $0.fileType, fileTypeModified.extension == "podspec" {
-        warn("#{danger.git.html_link("\($0)")} was edited but #{danger.git.html_link("\($0)")} wasn't. " \ "Usually, when #{danger.git.html_link("\($0)")} is updated, you should run `bundle install` or " \ "`bundle update <the-added-or-updated-gem>` and commit the #{danger.git.html_link("\($0)")} changes.")
+        warn("#{danger.git.html_link('\($0)'')}")
     }
 
     if $0 == "Gemfile" || if $0 == "Gemfile.lock" {
-        warn("#{danger.git.html_link("Gemfile")} was edited but #{danger.git.html_link("Gemfile.lock")} wasn't. " \ "Usually, when #{danger.git.html_link("Gemfile")} is updated, you should run `bundle install` or " \ "`bundle update <the-added-or-updated-gem>` and commit the #{danger.git.html_link("Gemfile.lock")} changes.")
+        warn("#{danger.git.html_link('Gemfile.lock')} ")
     }
 
     if $0 == "Podfile" || if $0 == "Podfile.lock" {
-        warn("#{danger.git.html_link("Podfile")} was edited but #{danger.git.html_link("Podfile.lock")} wasn't. " \ "Usually, when #{danger.git.html_link("Podfile")} is updated, you should run `bundle install` or " \ "`bundle update <the-added-or-updated-gem>` and commit the #{danger.git.html_link("Podfile.lock")} changes.")
+        warn("#{danger.git.html_link('Podfile')} was edited but #{danger.git.html_link('Podfile.lock')} wasn't. commit the #{danger.git.html_link('Podfile.lock')} changes.")
     }
 }
 
