@@ -17,7 +17,7 @@ platform :ios do
 
     xcov(
       project: "/Users/travis/build/dbgarcia/danger-bot/TravisBot.xcodeproj",
-      scheme: "TravisBot",
+      scheme: "TravisBotTests",
       configuration: "Debug",
       output_directory: "xcov_output",
       # markdown_report: true,
