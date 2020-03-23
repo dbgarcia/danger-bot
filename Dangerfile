@@ -17,8 +17,11 @@ declared_trivial = github.pr_title.include? "#trivial"
 # )
 
 src_root = File.expand_path('../', __FILE__)
+path_project = src_root + "/TravisBot.xcodeproj"
 
-slather.configure("#{src_root}/TravisBot.xcodeproj", "TravisBot")
+warn(path_project) 
+
+slather.configure(path_project, "TravisBot")
 slather.notify_if_coverage_is_less_than(minimum_coverage: 20)
 slather.notify_if_modified_file_is_less_than(minimum_coverage: 20)
 slather.show_coverage
