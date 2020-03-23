@@ -19,6 +19,7 @@ declared_trivial = github.pr_title.include? "#trivial"
 src_root = File.expand_path('../', __FILE__)
 path_project = src_root + "/TravisBot.xcodeproj"
 
+echo path_project
 warn(path_project) 
 
 slather.configure(path_project, "TravisBot")
