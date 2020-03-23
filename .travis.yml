@@ -11,8 +11,8 @@ install:
 
 script:
 - bundle exec fastlane custom_lane
-- bundle exec danger
 # - danger-swift ci
 
 after_success: 
+  - bundle exec danger
   # - slather
