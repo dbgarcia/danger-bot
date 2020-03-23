@@ -16,10 +16,15 @@ declared_trivial = github.pr_title.include? "#trivial"
 #   derived_data_path: "#{src_root}/build/derived_data"
 # )
 
-slather.configure("TravisBot.xcodeproj", "TravisBotTests")
-slather.notify_if_coverage_is_less_than(minimum_coverage: 80)
-slather.notify_if_modified_file_is_less_than(minimum_coverage: 60)
-slather.show_coverage
+src_root = File.expand_path('../', __FILE__)
+src_root2 = File.expand_path('..')
+warn(src_root) 
+warn(src_root2) 
+
+# slather.configure("TravisBot.xcodeproj", "TravisBot")
+# slather.notify_if_coverage_is_less_than(minimum_coverage: 20)
+# slather.notify_if_modified_file_is_less_than(minimum_coverage: 20)
+# slather.show_coverage
 
 ## ** SwiftLint ***
 # swiftlint.binary_path = "/usr/local/bin/swiftlint"
