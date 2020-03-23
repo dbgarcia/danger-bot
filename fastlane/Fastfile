@@ -1,0 +1,32 @@
+
+#update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :custom_lane do
+    #   slather(
+    #   # build_directory: "foo",
+    #   scheme: "TravisBot",
+    #   proj: "./TravisBot/TravisBot.xcodeproj",
+    #   show: true,
+    #   html: true,
+    #   verbose: true
+    # )
+
+    xcov(
+      project: "./TravisBot.xcodeproj",
+      scheme: "TravisBotTests",
+      configuration: "Debug",
+      output_directory: "xcov_output",
+      markdown_report: true,
+      json_report: true,
+      minimum_coverage_percentage: 80.0,
+      # only_project_targets: true,
+      exclude_targets: 'TravisBot.app',
+      include_test_targets: true
+    )
+
+  end
+end

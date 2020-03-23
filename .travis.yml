@@ -7,8 +7,12 @@ directories:
 
 install:
 - bundle install --path .
-- brew install danger/tap/danger-swift
+# - brew install danger/tap/danger-swift
 
 script:
-- echo "Run danger"
-- danger-swift ci
+- bundle exec fastlane custom_lane
+- bundle exec danger
+# - danger-swift ci
+
+after_success: 
+  # - slather
