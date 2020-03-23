@@ -8,15 +8,14 @@ path_project = src_root + "/TravisBot.xcodeproj"
 warn(path_project) 
 
 xcov.report(
-  project: path_project,
+  project: "/Users/travis/build/dbgarcia/danger-bot/TravisBot.xcodeproj",
 #   scheme: "TravisBot",
   scheme: 'TravisBotTests',
   exclude_targets: 'TravisBot.app',
   minimum_coverage_percentage: 90.0,
-  output_directory: "#{src_root}/fastlane/xcov_output",
+  output_directory: "/Users/travis/build/dbgarcia/danger-bot/fastlane/xcov_output",
+  derived_data_path: "/Users/travis/Library/Developer/Xcode/DerivedData"
 )
-
-#   derived_data_path: "#{src_root}/build/derived_data"
 
 
 

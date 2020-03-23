@@ -16,12 +16,12 @@ platform :ios do
     # )
 
     xcov(
-      project: "./TravisBot.xcodeproj",
+      project: "/Users/travis/build/dbgarcia/danger-bot/TravisBot.xcodeproj",
       scheme: "TravisBot",
       configuration: "Debug",
       output_directory: "xcov_output",
-      markdown_report: true,
-      json_report: true,
+      # markdown_report: true,
+      # json_report: true,
       minimum_coverage_percentage: 80.0,
       # only_project_targets: true,
       exclude_targets: 'TravisBot.app',
