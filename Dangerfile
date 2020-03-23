@@ -7,15 +7,15 @@ path_project = src_root + "/TravisBot.xcodeproj"
 
 warn(path_project) 
 
-xcov.report(
-  project: "/Users/travis/build/dbgarcia/danger-bot/TravisBot.xcodeproj",
+# xcov.report(
+#   project: "/Users/travis/build/dbgarcia/danger-bot/TravisBot.xcodeproj",
 #   scheme: "TravisBot",
-  scheme: 'TravisBotTests',
-  exclude_targets: 'TravisBot.app',
-  minimum_coverage_percentage: 90.0,
-  output_directory: "/Users/travis/build/dbgarcia/danger-bot/fastlane/xcov_output",
-  derived_data_path: "/Users/travis/Library/Developer/Xcode/DerivedData"
-)
+#   scheme: 'TravisBotTests',
+#   exclude_targets: 'TravisBot.app',
+#   minimum_coverage_percentage: 90.0,
+#   output_directory: "/Users/travis/build/dbgarcia/danger-bot/fastlane/xcov_output",
+#   derived_data_path: "/Users/travis/Library/Developer/Xcode/DerivedData"
+# )
 
 
 
@@ -29,35 +29,49 @@ xcov.report(
 # swiftlint.lint_files inline_mode: true
 
 
+
 # Make it more obvious that a PR is a work in progress and shouldn't be merged yet
 if github.pr_title.include? "[WIP]"
     warn("PR is classed as Work in Progress") 
 end
 
+# If these are all empty something has gone wrong, better to raise it in a comment
+if git.modified_files.empty? && git.added_files.empty? && git.deleted_files.empty?
+    warn("This PR has no changes at all, this is likely an issue during development.")
+  end
+
 if github.pr_title.length < 5
     fail("PR title is too short. 🙏 Please use this format `feature/NAME_000_TASK Your feature title` and replace `000` with Jira task number.")
 end
 
+# Feature PR go to Develop
+if github.branch_for_base != "develop" && (github.pr_title =~ /(feature)\//)
+    fail("Please re-submit this PR to develop, we may have already fixed your issue.")
+end
+
+# Ensure that the Feature PR title follows the convention
+if !(github.pr_title =~ /(feature)\//)
+    fail("The Pull Request title does not follow the convention `feature/NAME_TASKID_TITLE` and replace `TASKID` with Jira task number. PR Title text")
+end
+
+# Ensure that the Release PR title follows the convention
+if !(github.pr_title =~ /(release)\//)
+    fail("The Pull Request title does not follow the convention `release/1.2.4` PR Title text")
+end
+
+# Ensure that the Hotfix PR title follows the convention
+if !(github.pr_title =~ /(hotfix)\//)
+    fail("The Pull Request title does not follow the convention `hotfix/1.2.4` PR Title text")
+end
+
 # Mainly to encourage writing up some reasoning about the PR, rather than just leaving a title.
-if github.pr_body.length < 3 && git.lines_of_code > 60
+if github.pr_body.length < 3 && git.lines_of_code > 200
   warn("PR has no description. 📝 You should provide a description of the changes that have made.")
 end
 
 # Warn when there is a big PR
 if git.lines_of_code > 300
-    warn("Big PR") 
-end
-
-if git.lines_of_code > 500
-    warn("Large PR") 
-end
-
-if git.lines_of_code > 700
-    warn("Huge PR") 
-end
-
-if git.lines_of_code > 1000
-    warn("Freakin Huge PR") 
+    fail("PR size seems relatively large. ✂️ If this PR contains multiple changes, please split each into separate PR will helps faster, easier review.")
 end
 
 # Don't let testing shortcuts get into master by accident
@@ -69,8 +83,5 @@ if `grep -r fit specs/ `.length > 1
     fail("fit left in tests") 
 end
 
-additions = git.added_files.length
-changedFiles = git.modified_files.length
 
-
-message("🎉 The PR added \(additions) and removed \(0) lines. 🗂 \(changedFiles) files changed.")
+message("🎉 The PR added \(git.added_files.length) and removed \(0) lines. 🗂 \(git.modified_files.length) files changed.")

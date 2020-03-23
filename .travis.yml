@@ -10,10 +10,10 @@ install:
 # - brew install danger/tap/danger-swift
 
 script:
-- bundle exec fastlane custom_lane --verbose
-# - bundle exec danger
+# - bundle exec fastlane custom_lane --verbose
+- bundle exec danger
 # - danger-swift ci
 
 after_success: 
-  - bundle exec danger
+  # - bundle exec danger
   # - slather
