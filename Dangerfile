@@ -8,8 +8,8 @@ declared_trivial = github.pr_title.include? "#trivial"
 
 xcov.report(
   project: "TravisBot.xcodeproj",
-  scheme: SCHEME,
-  #scheme: 'TravisBotTests',
+#   scheme: "TravisBot",
+  scheme: 'TravisBotTests',
   exclude_targets: 'TravisBot.app',
   minimum_coverage_percentage: 90,
 #   output_directory: "#{src_root}/build/#{SCHEME}/xcov",
