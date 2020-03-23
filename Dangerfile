@@ -11,7 +11,7 @@ xcov.report(
 #   scheme: "TravisBot",
   scheme: 'TravisBotTests',
   exclude_targets: 'TravisBot.app',
-  minimum_coverage_percentage: 90,
+  minimum_coverage_percentage: 90.0,
 #   output_directory: "#{src_root}/build/#{SCHEME}/xcov",
 #   derived_data_path: "#{src_root}/build/derived_data"
 )
