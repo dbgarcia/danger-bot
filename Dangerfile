@@ -6,15 +6,20 @@ declared_trivial = github.pr_title.include? "#trivial"
 
 # SCHEME = "TravisBot"
 
-xcov.report(
-  project: "TravisBot.xcodeproj",
+# xcov.report(
+#   project: "TravisBot.xcodeproj",
 #   scheme: "TravisBot",
-  scheme: 'TravisBotTests',
-  exclude_targets: 'TravisBot.app',
-  minimum_coverage_percentage: 90.0,
+#   scheme: 'TravisBotTests',
+#   exclude_targets: 'TravisBot.app',
+#   minimum_coverage_percentage: 90.0,
 #   output_directory: "#{src_root}/build/#{SCHEME}/xcov",
 #   derived_data_path: "#{src_root}/build/derived_data"
-)
+# )
+
+slather.configure("TravisBot.xcodeproj", "TravisBotTests")
+slather.notify_if_coverage_is_less_than(minimum_coverage: 80)
+slather.notify_if_modified_file_is_less_than(minimum_coverage: 60)
+slather.show_coverage
 
 ## ** SwiftLint ***
 # swiftlint.binary_path = "/usr/local/bin/swiftlint"
