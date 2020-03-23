@@ -28,9 +28,8 @@ DerivedData
 # Bundler
 .bundle
 ruby/
-xcov_output/
-test-reports/
-fastlane/xcov_report
+# fastlane/xcov_output/
+# fastlane/xcov_report/
 fastlane/report.xml
 
 # Logs
