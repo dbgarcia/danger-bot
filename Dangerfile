@@ -2,30 +2,24 @@
 # including in a project's CHANGELOG for example
 declared_trivial = github.pr_title.include? "#trivial"
 
-# src_root = File.expand_path('../', __FILE__)
-
-# SCHEME = "TravisBot"
-
-# xcov.report(
-#   project: "TravisBot.xcodeproj",
-#   scheme: "TravisBot",
-#   scheme: 'TravisBotTests',
-#   exclude_targets: 'TravisBot.app',
-#   minimum_coverage_percentage: 90.0,
-#   output_directory: "#{src_root}/build/#{SCHEME}/xcov",
-#   derived_data_path: "#{src_root}/build/derived_data"
-# )
-
 src_root = File.expand_path('../', __FILE__)
 path_project = src_root + "/TravisBot.xcodeproj"
 
-echo path_project
 warn(path_project) 
 
-slather.configure(path_project, "TravisBot")
-slather.notify_if_coverage_is_less_than(minimum_coverage: 20)
-slather.notify_if_modified_file_is_less_than(minimum_coverage: 20)
-slather.show_coverage
+xcov.report(
+  project: path_project,
+#   scheme: "TravisBot",
+  scheme: 'TravisBotTests',
+  exclude_targets: 'TravisBot.app',
+  minimum_coverage_percentage: 90.0,
+  output_directory: "#{src_root}/fastlane/xcov_output",
+)
+
+#   derived_data_path: "#{src_root}/build/derived_data"
+
+
+
 
 ## ** SwiftLint ***
 # swiftlint.binary_path = "/usr/local/bin/swiftlint"
