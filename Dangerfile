@@ -25,14 +25,6 @@ if github.pr_title.include? "[WIP]"
     warn("`PR` is classed as Work in Progress") 
 end
 
-additions = git.added_files.length
-modified = git.modified_files.length
-deletions = git.deleted_files.length
-
-warn(additions)
-warn(modified)
-warn(deletions)
-
 # If these are all empty something has gone wrong, better to raise it in a comment
 if git.modified_files.empty? && git.added_files.empty? && git.deleted_files.empty?
     warn("This `PR` has no changes at all, this is likely an issue during development.")
@@ -81,5 +73,9 @@ if `grep -r fit specs/ `.length > 1
     fail("fit left in tests") 
 end
 
+# additions = git.added_files.length
+# modified = git.modified_files.length
+# deletions = git.deleted_files.length
+# message("🎉 The PR added ", git.added_files.length, "and removed ", deletions, "lines. 🗂 ", modified, "files changed.")
 
-message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(modified) files changed.")
+message("🎉 The PR added ", 300, "and removed ", 50, "lines. 🗂 ", 600, "files changed.")
