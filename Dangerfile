@@ -5,7 +5,7 @@ declared_trivial = github.pr_title.include? "#trivial"
 
 # Fail the build based on code coverage
 xcov.report(
-  project: "TravisBot.xcworkspace",
+  project: "TravisBot.xcodeproj",
   scheme: "TravisBot",
   minimum_coverage_percentage: 20.0
 )
