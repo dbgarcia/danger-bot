@@ -73,7 +73,7 @@ if `grep -r fit specs/ `.length > 1
 end
 
 additions = git.insertions
-modified = git.deletions
+deletions = git.deletions
 changed_files = (git.added_files.length + git.modified_files.length - git.deleted_files.length)
 
 message("🎉 The PR added #{additions} and removed #{deletions} lines. 🗂 #{changed_files} files changed.")
