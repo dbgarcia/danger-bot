@@ -19,7 +19,6 @@ swiftlint.max_num_violations = 20
 # Run SwiftLint and warn us if anything fails it
 swiftlint.lint_files
 
-
 # Make it more obvious that a PR is a work in progress and shouldn't be merged yet
 if github.pr_title.include? "[WIP]"
     warn("`PR` is classed as Work in Progress") 
