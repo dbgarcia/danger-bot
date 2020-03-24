@@ -75,8 +75,6 @@ end
 additions = git.added_files.length
 modified = git.modified_files.length
 deletions = git.deleted_files.length
+changed_files = (additions + modified - deletions)
 
-# message("🎉 The PR added ", git.added_files.length, "and removed ", deletions, "lines. 🗂 ", modified, "files changed.")
-# message("🎉 The PR added ", 300, "and removed ", 50, "lines. 🗂 ", 600, "files changed.")
-
-message("🎉 The PR added #{additions} and removed #{deletions} lines. 🗂 #{modified} files changed.")
+message("🎉 The PR added #{additions} and removed #{deletions} lines. 🗂 #{changed_files} files changed.")
