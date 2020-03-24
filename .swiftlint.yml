@@ -1,0 +1,44 @@
+disabled_rules:
+  - trailing_whitespace
+
+opt_in_rules:
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - empty_count
+  - empty_string
+  - explicit_init
+  - fatal_error_message
+  - force_unwrapping
+  - implicit_return
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - private_action
+  - private_over_fileprivate
+  - sorted_imports
+  - switch_case_on_newline
+  - unneeded_parentheses_in_closure_argument
+  - unused_private_declaration
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace_closing_braces
+
+force_cast: 
+  severity: warning
+
+force_try:
+  severity: warning
+
+line_length:
+  warning: 130
+  error: 160
+
+reporter: "xcode"
+
+excluded:
+  - Pods
+
+included:
+  - FSLoginUI
+  - ../FSLoginUI

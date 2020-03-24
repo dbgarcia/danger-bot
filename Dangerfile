@@ -2,32 +2,22 @@
 # including in a project's CHANGELOG for example
 declared_trivial = github.pr_title.include? "#trivial"
 
-src_root = File.expand_path('../', __FILE__)
-path_project = src_root + "/TravisBot.xcodeproj"
 
-warn(path_project) 
+# Fail the build based on code coverage
+xcov.report(
+  project: "TravisBot.xcworkspace",
+  scheme: "TravisBot",
+  minimum_coverage_percentage: 20.0
+)
 
-# xcov.report(
-#   project: "/Users/travis/build/dbgarcia/danger-bot/TravisBot.xcodeproj",
-#   scheme: "TravisBot",
-#   scheme: 'TravisBotTests',
-#   exclude_targets: 'TravisBot.app',
-#   minimum_coverage_percentage: 90.0,
-#   output_directory: "/Users/travis/build/dbgarcia/danger-bot/fastlane/xcov_output",
-#   derived_data_path: "/Users/travis/Library/Developer/Xcode/DerivedData"
-# )
-
-
-
+commit_lint.check warn: :all
 
 ## ** SwiftLint ***
-# swiftlint.binary_path = "/usr/local/bin/swiftlint"
-# swiftlint.config_file = "#{src_root}/.swiftlint.yml"
+swiftlint.binary_path = "/Pods/SwiftLint/swiftlint"
+swiftlint.config_file = ".swiftlint.yml"
 
 # Run SwiftLint and warn us if anything fails it
-# swiftlint.directory = src_root
-# swiftlint.lint_files inline_mode: true
-
+swiftlint.lint_files inline_mode: true
 
 
 # Make it more obvious that a PR is a work in progress and shouldn't be merged yet

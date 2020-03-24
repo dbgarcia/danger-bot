@@ -6,14 +6,11 @@ cache:
 directories:
 
 install:
-- bundle install --path .
-# - brew install danger/tap/danger-swift
+  - bundle install --path .
 
 script:
-# - bundle exec fastlane custom_lane --verbose
-- bundle exec danger
-# - danger-swift ci
+  - set -o pipefail
+  - bundle exec fastlane custom_lane --verbose
 
 after_success: 
-  # - bundle exec danger
-  # - slather
+  - bundle exec danger
