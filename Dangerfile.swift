@@ -61,6 +61,9 @@ modified.forEach {
     }
 }
 
+// Run Swiftlint
+SwiftLint.lint(inline: true, configFile: ".swiftlint.yml")
+
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
 
 slather.configure("/Users/douglas.garcia/Documents/GitHub/danger-bot/TravisBot/TravisBot.xcodeproj", "TravisBotTests")
