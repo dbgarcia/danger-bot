@@ -19,7 +19,7 @@ platform :ios do
 
     xcov(
       project: "TravisBot.xcodeproj",
-      scheme: "TravisBotTests",
+      scheme: "TravisBot",
       exclude_targets: 'TravisBot.app',
       include_test_targets: true
     )

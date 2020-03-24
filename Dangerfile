@@ -7,7 +7,8 @@ declared_trivial = github.pr_title.include? "#trivial"
 xcov.report(
   project: "TravisBot.xcodeproj",
   scheme: "TravisBotTests",
-  minimum_coverage_percentage: 20.0
+  minimum_coverage_percentage: 20.0,
+  include_test_targets: true
 )
 
 ## ** SwiftLint ***
