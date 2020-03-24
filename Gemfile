@@ -7,4 +7,5 @@ gem 'xcov'
 gem "xcpretty"
 gem 'danger'
 gem 'danger-xcov'
+gem 'danger-swiftlint'
 gem "danger-commit_lint"
