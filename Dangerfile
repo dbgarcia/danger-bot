@@ -25,6 +25,14 @@ if github.pr_title.include? "[WIP]"
     warn("`PR` is classed as Work in Progress") 
 end
 
+additions = git.added_files.length
+modified = git.modified_files.length
+deletions = git.deleted_files.length
+
+warn(additions)
+warn(modified)
+warn(deletions)
+
 # If these are all empty something has gone wrong, better to raise it in a comment
 if git.modified_files.empty? && git.added_files.empty? && git.deleted_files.empty?
     warn("This `PR` has no changes at all, this is likely an issue during development.")
@@ -75,4 +83,4 @@ end
 
 
 
-message("🎉 The PR added \(git.added_files.length) and removed \(0) lines. 🗂 \(git.modified_files.length) files changed.")
+message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(modified) files changed.")
