@@ -1,32 +1,29 @@
 
-#update_fastlane
 
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
+
+  before_all do
+  end
+
+  desc "Runs all the tests"
   lane :custom_lane do
-    #   slather(
-    #   # build_directory: "foo",
-    #   scheme: "TravisBot",
-    #   proj: "./TravisBot/TravisBot.xcodeproj",
-    #   show: true,
-    #   html: true,
-    #   verbose: true
-    # )
+    scan(
+      project: "TravisBot.xcodeproj",
+      scheme: "TravisBot",
+      clean: true,
+      code_coverage: true,
+      skip_build: true
+    )
 
     xcov(
-      project: "/Users/travis/build/dbgarcia/danger-bot/TravisBot.xcodeproj",
-      scheme: "TravisBotTests",
-      configuration: "Debug",
-      output_directory: "xcov_output",
-      # markdown_report: true,
-      # json_report: true,
-      minimum_coverage_percentage: 80.0,
-      # only_project_targets: true,
+      project: "TravisBot.xcodeproj",
+      scheme: "TravisBot",
       exclude_targets: 'TravisBot.app',
       include_test_targets: true
     )
 
+  danger
   end
 end
