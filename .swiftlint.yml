@@ -38,6 +38,8 @@ reporter: "xcode"
 
 excluded:
   - Pods
+  - Dangerfile
+  - Dangerfile.swift
 
 included:
   - FSLoginUI
