@@ -77,4 +77,6 @@ end
 # deletions = git.deleted_files.length
 # message("🎉 The PR added ", git.added_files.length, "and removed ", deletions, "lines. 🗂 ", modified, "files changed.")
 
-message("🎉 The PR added ", 300, "and removed ", 50, "lines. 🗂 ", 600, "files changed.")
+# message("🎉 The PR added ", 300, "and removed ", 50, "lines. 🗂 ", 600, "files changed.")
+
+message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
