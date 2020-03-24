@@ -7,10 +7,11 @@ directories:
 
 install:
   - bundle install --path .
+  - brew install swiftlint
 
 script:
   - set -o pipefail
   - bundle exec fastlane custom_lane --verbose
 
 after_success: 
-  - bundle exec danger
+  # - bundle exec danger
