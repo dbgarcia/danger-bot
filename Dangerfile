@@ -6,32 +6,31 @@ declared_trivial = github.pr_title.include? "#trivial"
 # Fail the build based on code coverage
 xcov.report(
   project: "TravisBot.xcodeproj",
-  scheme: "TravisBot",
+  scheme: "TravisBotTests",
   minimum_coverage_percentage: 20.0
 )
-
-commit_lint.check warn: :all
 
 ## ** SwiftLint ***
 swiftlint.binary_path = "./Pods/SwiftLint/swiftlint"
 swiftlint.config_file = ".swiftlint.yml"
-
+swiftlint.max_num_violations = 20
 # Run SwiftLint and warn us if anything fails it
-swiftlint.lint_files inline_mode: true
+# swiftlint.lint_files inline_mode: true
+swiftlint.lint_files
 
 
 # Make it more obvious that a PR is a work in progress and shouldn't be merged yet
 if github.pr_title.include? "[WIP]"
-    warn("PR is classed as Work in Progress") 
+    warn("`PR` is classed as Work in Progress") 
 end
 
 # If these are all empty something has gone wrong, better to raise it in a comment
 if git.modified_files.empty? && git.added_files.empty? && git.deleted_files.empty?
-    warn("This PR has no changes at all, this is likely an issue during development.")
+    warn("This `PR` has no changes at all, this is likely an issue during development.")
   end
 
 if github.pr_title.length < 5
-    fail("PR title is too short. 🙏 Please use this format `feature/NAME_000_TASK Your feature title` and replace `000` with Jira task number.")
+    fail("`PR` title is too short. 🙏 Please use this format `feature/NAME_000_TASK`, Your feature title and replace `000` with Jira task number.")
 end
 
 # Feature PR go to Develop
@@ -46,12 +45,12 @@ end
 
 # Ensure that the Release PR title follows the convention
 if !(github.pr_title =~ /(release)\//)
-    fail("The Pull Request title does not follow the convention `release/1.2.4` PR Title text")
+    fail("The Pull Request title does not follow the convention `release/1.2.4`. PR Title text")
 end
 
 # Ensure that the Hotfix PR title follows the convention
 if !(github.pr_title =~ /(hotfix)\//)
-    fail("The Pull Request title does not follow the convention `hotfix/1.2.4` PR Title text")
+    fail("The Pull Request title does not follow the convention `hotfix/1.2.4`. PR Title text")
 end
 
 # Mainly to encourage writing up some reasoning about the PR, rather than just leaving a title.
@@ -72,6 +71,7 @@ end
 if `grep -r fit specs/ `.length > 1
     fail("fit left in tests") 
 end
+
 
 
 message("🎉 The PR added \(git.added_files.length) and removed \(0) lines. 🗂 \(git.modified_files.length) files changed.")
