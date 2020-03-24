@@ -13,7 +13,7 @@ xcov.report(
 commit_lint.check warn: :all
 
 ## ** SwiftLint ***
-swiftlint.binary_path = "/Pods/SwiftLint/swiftlint"
+swiftlint.binary_path = "./Pods/SwiftLint/swiftlint"
 swiftlint.config_file = ".swiftlint.yml"
 
 # Run SwiftLint and warn us if anything fails it
