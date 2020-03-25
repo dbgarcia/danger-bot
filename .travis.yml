@@ -12,7 +12,7 @@ install:
   - gem install bundler
   - bundle install
   - npm install -g danger
-  - swift package generate-xcodeproj
+  # - swift package generate-xcodeproj
 
   # - brew install swiftlint
   # - brew install danger/tap/danger-swift
