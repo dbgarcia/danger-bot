@@ -1,7 +1,7 @@
 
-import Foudation
 import Danger
 import DangerSwiftCoverage
+import XcodeProj
 // import DangerXCodeSummary
 
 let danger = Danger()
@@ -68,28 +68,14 @@ message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(c
 // let report = XCodeSummary(filePath: "result.json")
 // report.report()
 
+let xcodeproj = try XcodeProj(path: "./TravisBot.xcodeproj")
+let key = "CURRENT_PROJECT_VERSION"
+let derivedDataTemp = ""
 
-let pathDerivedData = shell("xcodebuild", ["-project", "TravisBot.xcodeproj", "-scheme", "TravisBot", "-showBuildSettings"]).filter { $0.contains("OBJROOT") }
-let derivedData = pathDerivedData.first?.replacingOccurrences(of: "/Build/Intermediates.noindex", with: "") ?? ""
-
-print("pathDerivedData: \(pathDerivedData)")
-print("derivedData: \(derivedData)")
-
-
-Coverage.xcodeBuildCoverage(.derivedDataFolder("derivedData"), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
-
-
-func shell(launchPath: String, arguments: [String]) -> String? {
-    let task = Process()
-    task.launchPath = launchPath
-    task.arguments = arguments
-
-    let pipe = Pipe()
-    task.standardOutput = pipe
-    task.launch()
-
-    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-    let output = String(data: data, encoding: String.Encoding.utf8)
-
-    return output
+for conf in xcodeproj.pbxproj.buildConfigurations where conf.buildSettings[key] != nil {
+    derivedDataTemp = conf.buildSettings[key]
 }
+
+let folderDerivedData = derivedDataTemp.replacingOccurrences(of: "/Build/Intermediates.noindex", with: "")
+
+Coverage.xcodeBuildCoverage(.derivedDataFolder(folderDerivedData), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
