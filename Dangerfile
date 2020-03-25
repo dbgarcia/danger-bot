@@ -77,3 +77,9 @@ deletions = git.deletions
 changed_files = (git.added_files.length + git.modified_files.length - git.deleted_files.length)
 
 message("🎉 The PR added #{additions} and removed #{deletions} lines. 🗂 #{changed_files} files changed.")
+
+
+# Escrever estas regras
+# Check for big Pull Requests especially if more than 500 line of code
+# Check if unit tests added as part of Pull Request if application code has been changed
+# Check that Podfile  or Podfile.lock  updated if so ignore that big PR

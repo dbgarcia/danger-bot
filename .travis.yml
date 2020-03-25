@@ -4,14 +4,20 @@ language: swift
 
 cache:
 directories:
+  - .build
+  - ~/.danger-swift
 
 install:
-  - bundle install --path .
+  # - bundle install --path .
   - brew install swiftlint
+  - brew install danger/tap/danger-swift
 
 script:
   - set -o pipefail
-  - bundle exec fastlane custom_lane --verbose
+  # - bundle exec fastlane custom_lane --verbose
+  # - danger-swift ci
+  - danger-swift ci
+
 
 after_success: 
   # - bundle exec danger

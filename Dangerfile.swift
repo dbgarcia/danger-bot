@@ -3,9 +3,9 @@ import Danger
 
 let danger = Danger()
 
-// if danger.git.branch_for_base != "develop" {
-//     fail("Please re-submit this PR to develop, we may have already fixed your issue.")
-// }
+if danger.github.branch_for_base != "develop" {
+    fail("Please re-submit this PR to develop, we may have already fixed your issue.")
+}
 
 // Pull request size
 let bigPRThreshold = 600
@@ -28,12 +28,12 @@ if prTitle.contains("WIP") {
 }
 
 if prTitle.count < 5 {
-    fail("PR title is too short. 🙏 Please use this format `feature/NAME_000_TASK Your feature title` and replace `000` with Jira task number.")
+    fail("PR title is too short. 🙏 Please use this format `feature/NAME_000_TASK` Your feature title and replace `000` with Jira task number.")
 }
 
 if !prTitle.contains("release/") {
     if !prTitle.contains("feature/") {
-        warn("PR title does not containe the related Jira task. 🙏 Please use this format `feature/NAME_000_TASK Your feature title` and replace `000` with Jira task number.")
+        warn("PR title does not containe the related Jira task. 🙏 Please use this format `feature/NAME_000_TASK` Your feature title and replace `000` with Jira task number.")
     }
 }
 
@@ -45,28 +45,12 @@ if testFiles.isEmpty {
     warn("PR does not contain any files related to unit tests ✅ (ignore if your changes do not require tests)")
 }
 
-modified.forEach {
-    warn("\($0)")
-
-    if let fileTypeModified = $0.fileType, fileTypeModified.extension == "podspec" {
-        warn("#{danger.git.html_link('\($0)'')}")
-    }
-
-    if $0 == "Gemfile" || $0 == "Gemfile.lock" {
-        warn("#{danger.github.html_link(\($0))} was edited.")
-    }
-
-    if $0 == "Podfile" || $0 == "Podfile.lock" {
-        warn("#{danger.git.html_link('Podfile')} was edited but #{danger.git.html_link('Podfile.lock')} wasn't. commit the #{danger.git.html_link('Podfile.lock')} changes.")
-    }
-}
-
-// Run Swiftlint
-SwiftLint.lint(inline: true, configFile: ".swiftlint.yml")
-
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
 
-slather.configure("/Users/douglas.garcia/Documents/GitHub/danger-bot/TravisBot/TravisBot.xcodeproj", "TravisBotTests")
-slather.notify_if_coverage_is_less_than(minimum_coverage: 80)
-slather.notify_if_modified_file_is_less_than(minimum_coverage: 60)
-slather.show_coverage
+// Run Swiftlint
+// SwiftLint.lint(inline: true, configFile: ".swiftlint.yml")
+
+// slather.configure("/Users/douglas.garcia/Documents/GitHub/danger-bot/TravisBot/TravisBot.xcodeproj", "TravisBotTests")
+// slather.notify_if_coverage_is_less_than(minimum_coverage: 80)
+// slather.notify_if_modified_file_is_less_than(minimum_coverage: 60)
+// slather.show_coverage
