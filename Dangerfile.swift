@@ -1,4 +1,4 @@
-
+import Foundation
 import Danger
 import DangerSwiftCoverage
 import XcodeProj
