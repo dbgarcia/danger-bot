@@ -68,25 +68,12 @@ message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(c
 // let report = XCodeSummary(filePath: "result.json")
 // report.report()
 
-let xcodeproj = try XcodeProj(path: "./TravisBot.xcodeproj")
-let key = "OBJROOT"
-var derivedDataTemp = ""
 
-print("✅xcodeproj: \(xcodeproj)")
+let currentDirectoryPath = FileManager.default.currentDirectoryPath
+print("currentDirectoryPath: \(currentDirectoryPath)")
 
 
-for conf in xcodeproj.pbxproj.buildConfigurations where conf.buildSettings[key] != nil {
-    if let tempData = conf.buildSettings[key] as? [String] {
-        if let firstSettings = tempData.first {
-            print("✅ firstSettings: \(firstSettings)")
-            derivedDataTemp = firstSettings
-        }
-    }
-}
-
-print("✅derivedDataTemp: \(derivedDataTemp)")
-
-let folderDerivedData = derivedDataTemp.replacingOccurrences(of: "/Build/Intermediates.noindex", with: "")
+let folderDerivedData = currentDirectoryPath.replacingOccurrences(of: "/Build/Products/Debug", with: "")
 
 print("✅folderDerivedData: \(folderDerivedData)")
 
