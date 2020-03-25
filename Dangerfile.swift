@@ -1,4 +1,5 @@
 
+import Foudation
 import Danger
 import DangerSwiftCoverage
 // import DangerXCodeSummary
@@ -67,4 +68,28 @@ message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(c
 // let report = XCodeSummary(filePath: "result.json")
 // report.report()
 
-Coverage.xcodeBuildCoverage(.derivedDataFolder("/Users/travis/Library/Developer/Xcode/DerivedData/TravisBot-dupydzchkqlteuctlovpdungshed"), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
+
+let pathDerivedData = shell("xcodebuild", ["-project", "TravisBot.xcodeproj", "-scheme", "TravisBot", "-showBuildSettings"]).filter { $0.contains("OBJROOT") }
+let derivedData = pathDerivedData.first?.replacingOccurrences(of: "/Build/Intermediates.noindex", with: "") ?? ""
+
+print("pathDerivedData: \(pathDerivedData)")
+print("derivedData: \(derivedData)")
+
+
+Coverage.xcodeBuildCoverage(.derivedDataFolder("derivedData"), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
+
+
+func shell(launchPath: String, arguments: [String]) -> String? {
+    let task = Process()
+    task.launchPath = launchPath
+    task.arguments = arguments
+
+    let pipe = Pipe()
+    task.standardOutput = pipe
+    task.launch()
+
+    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+    let output = String(data: data, encoding: String.Encoding.utf8)
+
+    return output
+}
