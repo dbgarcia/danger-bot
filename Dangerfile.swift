@@ -67,4 +67,4 @@ message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(c
 // let report = XCodeSummary(filePath: "result.json")
 // report.report()
 
-Coverage.xcodeBuildCoverage(.derivedDataFolder("build"), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
+Coverage.xcodeBuildCoverage(.derivedDataFolder("/Users/travis/Library/Developer/Xcode/DerivedData/TravisBot-dupydzchkqlteuctlovpdungshed"), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
