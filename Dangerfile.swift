@@ -24,13 +24,19 @@ if prTitle.contains("WIP") {
 }
 
 if prTitle.count < 5 {
-    fail("PR title is too short. 🙏 Please use this format `feature/NAME_000_TASK` Your feature title and replace `000` with Jira task number.")
+    fail("PR title is too short. 🙏 Please use this format `feature/NAME_000_TASK` for Feature or `release/1.2.3` for Release or `hotfix/1.2.3` for fix master")
 }
 
 if !prTitle.contains("release/") {
-    if !prTitle.contains("feature/") {
-        warn("PR title does not containe the related Jira task. 🙏 Please use this format `feature/NAME_000_TASK` Your feature title and replace `000` with Jira task number.")
-    }
+    fail("The Pull Request title does not follow the convention `release/1.2.4`. PR Title text")
+}
+
+if !prTitle.contains("feature/") {
+    fail("The Pull Request title does not follow the convention `feature/NAME_TASKID_TITLE` and replace `TASKID` with Jira task number. PR Title text")
+}
+
+if !prTitle.contains("hotfix/") {
+    fail("The Pull Request title does not follow the convention `hotfix/1.2.4`. PR Title text")
 }
 
 // Files changed and created should includes unit tests
