@@ -8,7 +8,7 @@ platform :ios do
   end
 
   desc "Runs all the tests"
-  lane :custom_lane do
+  lane :run_testes do
     scan(
       project: "TravisBot.xcodeproj",
       scheme: "TravisBot",
@@ -16,7 +16,10 @@ platform :ios do
       code_coverage: true,
       skip_build: true
     )
+  end
 
+  desc "Runs all the tests"
+  lane :run_code_coverage do
     xcov(
       project: "TravisBot.xcodeproj",
       scheme: "TravisBot",
