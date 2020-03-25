@@ -4,8 +4,8 @@ language: swift
 
 cache:
   directories:
-    - .build
-    - ~/.danger-swift
+    # - .build
+    # - ~/.danger-swift
 
 install:
   - bundle install --path .
