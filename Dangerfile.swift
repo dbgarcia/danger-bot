@@ -76,7 +76,9 @@ print("✅: \(xcodeproj)")
 
 
 for conf in xcodeproj.pbxproj.buildConfigurations where conf.buildSettings[key] != nil {
-    derivedDataTemp = conf.buildSettings[key]
+    if let tempData = conf.buildSettings[key].first as? String {
+        derivedDataTemp = tempData
+    }
 }
 
 print("✅: \(derivedDataTemp)")
