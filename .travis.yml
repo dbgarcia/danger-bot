@@ -3,20 +3,25 @@ osx_image: xcode11.3
 language: swift
 
 cache:
-directories:
-  - .build
-  - ~/.danger-swift
+  directories:
+    - .build
+    - ~/.danger-swift
 
 install:
   # - bundle install --path .
-  - brew install swiftlint
-  - brew install danger/tap/danger-swift
+  - gem install bundler
+  - bundle install
+  - npm install -g danger
+  - swift package generate-xcodeproj
+
+  # - brew install swiftlint
+  # - brew install danger/tap/danger-swift
 
 script:
   - set -o pipefail
   # - bundle exec fastlane custom_lane --verbose
   # - danger-swift ci
-  - danger-swift ci
+  - swift run danger-swift ci
 
 
 after_success: 
