@@ -20,7 +20,8 @@ script:
   - set -o pipefail
   # - bundle exec fastlane run_testes --verbose
   # - danger-swift ci
-  - xcodebuild -project TravisBot.xcodeproj -scheme TravisBot -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' test | xcpretty
+  # - xcodebuild -project TravisBot.xcodeproj -scheme TravisBot -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' test | xcpretty
+  - bundle exec fastlane run_testes
   - swift run danger-swift ci
 
 

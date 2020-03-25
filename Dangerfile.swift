@@ -68,12 +68,18 @@ message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(c
 // let report = XCodeSummary(filePath: "result.json")
 // report.report()
 
-
+let folderDerivedData = ""
 let currentDirectoryPath = FileManager.default.currentDirectoryPath
-print("currentDirectoryPath: \(currentDirectoryPath)")
+print("✅folderDerivedData: \(folderDerivedData)")
 
 
-let folderDerivedData = currentDirectoryPath.replacingOccurrences(of: "/Build/Products/Debug", with: "")
+if FileManager.default.fileExists(atPath: "\(currentDirectoryPath)/out.txt") {
+    let dateFile = FileManager.default.contents(atPath: "\(currentDirectoryPath)/out.txt")
+    if let contentFile = String(data: dateFile ?? Data(), encoding: .utf8) {
+        folderDerivedData = contentFile
+        print("✅ contentFile: \(contentFile)")
+    }
+}
 
 print("✅folderDerivedData: \(folderDerivedData)")
 
