@@ -68,7 +68,7 @@ message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(c
 // let report = XCodeSummary(filePath: "result.json")
 // report.report()
 
-let folderDerivedData = ""
+var folderDerivedData = ""
 let currentDirectoryPath = FileManager.default.currentDirectoryPath
 print("✅folderDerivedData: \(folderDerivedData)")
 
