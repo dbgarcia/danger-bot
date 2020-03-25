@@ -69,13 +69,20 @@ message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(c
 // report.report()
 
 let xcodeproj = try XcodeProj(path: "./TravisBot.xcodeproj")
-let key = "CURRENT_PROJECT_VERSION"
-let derivedDataTemp = ""
+let key = "OBJROOT"
+var derivedDataTemp = ""
+
+print("✅: \(xcodeproj)")
+
 
 for conf in xcodeproj.pbxproj.buildConfigurations where conf.buildSettings[key] != nil {
     derivedDataTemp = conf.buildSettings[key]
 }
 
+print("✅: \(derivedDataTemp)")
+
 let folderDerivedData = derivedDataTemp.replacingOccurrences(of: "/Build/Intermediates.noindex", with: "")
+
+print("✅: \(folderDerivedData)")
 
 Coverage.xcodeBuildCoverage(.derivedDataFolder(folderDerivedData), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
