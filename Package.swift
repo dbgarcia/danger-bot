@@ -27,7 +27,7 @@ let package = Package(
         .target(
             name: "DangerBot",
             dependencies: ["Danger"]
-        ),,
+        ),
     ]
 )
 

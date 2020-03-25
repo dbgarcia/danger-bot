@@ -10,7 +10,12 @@ let bigPRThreshold = 600
 let additions = danger.github.pullRequest.additions!
 let deletions = danger.github.pullRequest.deletions!
 let changedFiles = danger.github.pullRequest.changedFiles!
-if (additions + deletions > bigPRThreshold) {
+
+let allSourceFiles = danger.git.modifiedFiles + danger.git.createdFiles
+let podFileChanged = allSourceFiles.contains("Podfile")
+let podFileLockChanged = allSourceFiles.contains("Podfile.lock")
+
+if (additions + deletions > bigPRThreshold) && (!podFileChanged || podFileLockChanged) {
     fail("PR size seems relatively large. ✂️ If this PR contains multiple changes, please split each into separate PR will helps faster, easier review.")
 }
 
