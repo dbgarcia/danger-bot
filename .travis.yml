@@ -11,7 +11,7 @@ install:
   - bundle install --path .
   # - gem install bundler
   # - bundle install
-  # - npm install -g danger
+  - npm install -g danger
   # - swift package generate-xcodeproj
 
   # - brew install swiftlint
