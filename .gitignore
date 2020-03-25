@@ -25,6 +25,7 @@ DerivedData
 *.xcscmblueprint
 *.xcworkspace
 
+.build
 # Bundler
 .bundle
 ruby/
