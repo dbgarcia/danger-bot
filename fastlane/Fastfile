@@ -21,7 +21,8 @@ platform :ios do
       project: "TravisBot.xcodeproj",
       scheme: "TravisBot",
       exclude_targets: 'TravisBot.app',
-      include_test_targets: true
+      include_test_targets: true,
+      only_project_targets: true
     )
 
   danger

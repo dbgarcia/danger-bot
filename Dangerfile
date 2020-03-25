@@ -15,7 +15,8 @@ xcov.report(
   project: "TravisBot.xcodeproj",
   scheme: "TravisBotTests",
   minimum_coverage_percentage: 20.0,
-  include_test_targets: true
+  include_test_targets: true,
+  only_project_targets: true
 )
 
 # Make it more obvious that a PR is a work in progress and shouldn't be merged yet
