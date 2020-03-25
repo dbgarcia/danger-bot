@@ -12,7 +12,7 @@ if (additions + deletions > bigPRThreshold) {
     fail("PR size seems relatively large. ✂️ If this PR contains multiple changes, please split each into separate PR will helps faster, easier review.")
 }
 
-Pull request body validation
+// Pull request body validation
 if danger.github.pullRequest.body == nil || danger.github.pullRequest.body!.isEmpty {
     warn("PR has no description. 📝 You should provide a description of the changes that have made.")
 }
