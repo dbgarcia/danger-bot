@@ -12,9 +12,8 @@ install:
   # - gem install bundler
   # - bundle install
   - npm install -g danger
-
-  # - brew install swiftlint
-  # - brew install danger/tap/danger-swift
+  - brew install danger/tap/danger-swift
+  - brew install swiftlint
 
 script:
   - set -o pipefail

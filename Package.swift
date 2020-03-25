@@ -17,9 +17,10 @@ let package = Package(
         .package(url: "https://github.com/orta/Komondor", from: "1.0.0"), // dev
         .package(url: "https://github.com/f-meloni/danger-swift-coverage", from: "1.1.0"),
         .package(url: "https://github.com/f-meloni/danger-swift-xcodesummary", from: "1.2.1"),
+        .package(url: "https://github.com/danger/danger-swift.git", from: "0.3.0"),
     ],
     targets: [
-        .target(name: "DangerDependencies", dependencies: ["Danger", "DangerSwiftCoverage", "DangerXCodeSummary", "XcodeProj"]), //dev
+        .target(name: "DangerDependencies", dependencies: ["Danger", "DangerSwiftCoverage", "DangerXCodeSummary", "DangerSwiftLint"]), //dev
         .target(name: "DangerBoot", dependencies: ["Danger"]),
     ]
 )

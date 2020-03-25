@@ -2,6 +2,7 @@ import Foundation
 import Danger
 import DangerSwiftCoverage
 import DangerXCodeSummary
+import DangerSwiftLint
 
 let danger = Danger()
 
@@ -57,7 +58,10 @@ if testFiles.isEmpty {
 message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(changedFiles) files changed.")
 
 // Run Swiftlint
-// SwiftLint.lint(inline: true, configFile: ".swiftlint.yml")
+SwiftLint.lint(swiftlintPath: "Pods/SwiftLint/swiftlint")
+SwiftLint.lint(inline: false, configFile: ".swiftlint.yml")
+SwiftLint.lint()
+
 
 // slather.configure("/Users/douglas.garcia/Documents/GitHub/danger-bot/TravisBot/TravisBot.xcodeproj", "TravisBotTests")
 // slather.notify_if_coverage_is_less_than(minimum_coverage: 80)
