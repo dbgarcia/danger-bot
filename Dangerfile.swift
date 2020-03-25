@@ -72,19 +72,22 @@ let xcodeproj = try XcodeProj(path: "./TravisBot.xcodeproj")
 let key = "OBJROOT"
 var derivedDataTemp = ""
 
-print("✅: \(xcodeproj)")
+print("✅xcodeproj: \(xcodeproj)")
 
 
 for conf in xcodeproj.pbxproj.buildConfigurations where conf.buildSettings[key] != nil {
-    if let tempData = conf.buildSettings[key] as? String {
-        derivedDataTemp = tempData
+    if let tempData = conf.buildSettings[key] as? [String] {
+        if let firstSettings = tempData.first {
+            print("✅ firstSettings: \(firstSettings)")
+            derivedDataTemp = firstSettings
+        }
     }
 }
 
-print("✅: \(derivedDataTemp)")
+print("✅derivedDataTemp: \(derivedDataTemp)")
 
 let folderDerivedData = derivedDataTemp.replacingOccurrences(of: "/Build/Intermediates.noindex", with: "")
 
-print("✅: \(folderDerivedData)")
+print("✅folderDerivedData: \(folderDerivedData)")
 
 Coverage.xcodeBuildCoverage(.derivedDataFolder(folderDerivedData), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
