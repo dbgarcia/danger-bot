@@ -28,9 +28,9 @@ platform :ios do
       scheme: "TravisBot",
       exclude_targets: 'TravisBot.app',
       include_test_targets: true,
+      json_report: true
       # only_project_targets: true
     )
   end
 
-  
 end
