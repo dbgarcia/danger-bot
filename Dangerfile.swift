@@ -1,7 +1,7 @@
 import Foundation
 import Danger
-import DangerSwiftCoverage
-import DangerXCodeSummary
+// import DangerSwiftCoverage
+// import DangerXCodeSummary
 import DangerSwiftLint
 
 let danger = Danger()
@@ -60,21 +60,23 @@ message("🎉 The PR added \(additions) and removed \(deletions) lines. 🗂 \(c
 // Run Swiftlint
 SwiftLint.lint(swiftlintPath: "Pods/SwiftLint/swiftlint")
 SwiftLint.lint(inline: false, configFile: ".swiftlint.yml")
-SwiftLint.lint()
+// SwiftLint.lint()
 
+/*
+slather.configure("/Users/douglas.garcia/Documents/GitHub/danger-bot/TravisBot/TravisBot.xcodeproj", "TravisBotTests")
+slather.notify_if_coverage_is_less_than(minimum_coverage: 80)
+slather.notify_if_modified_file_is_less_than(minimum_coverage: 60)
+slather.show_coverage
+*/
 
-// slather.configure("/Users/douglas.garcia/Documents/GitHub/danger-bot/TravisBot/TravisBot.xcodeproj", "TravisBotTests")
-// slather.notify_if_coverage_is_less_than(minimum_coverage: 80)
-// slather.notify_if_modified_file_is_less_than(minimum_coverage: 60)
-// slather.show_coverage
+// let report = XCodeSummary(filePath: "./fastlane/xcov_report")
+// report.report()
 
-let report = XCodeSummary(filePath: "./fastlane/xcov_report")
-report.report()
+/*
 
 var folderDerivedData = ""
 let currentDirectoryPath = FileManager.default.currentDirectoryPath
 print("✅folderDerivedData: \(folderDerivedData)")
-
 
 if FileManager.default.fileExists(atPath: "\(currentDirectoryPath)/out.txt") {
     let dateFile = FileManager.default.contents(atPath: "\(currentDirectoryPath)/out.txt")
@@ -87,3 +89,4 @@ if FileManager.default.fileExists(atPath: "\(currentDirectoryPath)/out.txt") {
 print("✅folderDerivedData: \(folderDerivedData)")
 
 Coverage.xcodeBuildCoverage(.derivedDataFolder(folderDerivedData), minimumCoverage: 50, excludedTargets: ["DangerSwiftCoverageTests.xctest"])
+*/

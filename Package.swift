@@ -10,17 +10,12 @@ let package = Package(
         .library(name: "DangerDeps", type: .dynamic, targets: ["DangerDependencies"]) // dev
     ],
     dependencies: [
-        .package(url: "https://github.com/danger/swift.git", from: "3.0.0"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"), // dev
-        .package(url: "https://github.com/Realm/SwiftLint", from: "0.28.1"), // dev
-        .package(url: "https://github.com/f-meloni/Rocket", from: "1.0.0"), // dev
-        .package(url: "https://github.com/orta/Komondor", from: "1.0.0"), // dev
-        .package(url: "https://github.com/f-meloni/danger-swift-coverage", from: "1.1.0"),
-        .package(url: "https://github.com/f-meloni/danger-swift-xcodesummary", from: "1.2.1"),
         .package(url: "https://github.com/danger/danger-swift.git", from: "0.3.0"),
+        .package(url: "https://github.com/ashfurrow/danger-swiftlint.git", from: "0.4.1"),
+        // .package(url: "https://github.com/f-meloni/danger-swift-coverage", from: "1.1.0"),
     ],
     targets: [
-        .target(name: "DangerDependencies", dependencies: ["Danger", "DangerSwiftCoverage", "DangerXCodeSummary", "DangerSwiftLint"]), //dev
+        .target(name: "DangerDependencies", dependencies: ["Danger", "DangerSwiftLint"]), //dev
         .target(name: "DangerBoot", dependencies: ["Danger"]),
     ]
 )
