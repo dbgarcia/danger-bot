@@ -1,0 +1,36 @@
+
+
+default_platform(:ios)
+
+platform :ios do
+
+  before_all do
+  end
+
+  desc "Runs all the tests"
+  lane :run_testes do
+    scan(
+      project: "TravisBot.xcodeproj",
+      scheme: "TravisBot",
+      clean: true,
+      code_coverage: true,
+      skip_build: true
+    )
+    
+    File.open("../out.txt", "w+") { |file| file.write("#{lane_context[SharedValues::SCAN_DERIVED_DATA_PATH]}") }
+
+  end
+
+  desc "Runs all the tests"
+  lane :run_code_coverage do
+    xcov(
+      project: "TravisBot.xcodeproj",
+      scheme: "TravisBot",
+      exclude_targets: 'TravisBot.app',
+      include_test_targets: true,
+      json_report: true
+      # only_project_targets: true
+    )
+  end
+
+end

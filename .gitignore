@@ -25,12 +25,23 @@ DerivedData
 *.xcscmblueprint
 *.xcworkspace
 
+## vscode
+.vscode
+
+.build
 # Bundler
 .bundle
 ruby/
+fastlane/out.txt
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/xcov_report
 
 # Logs
 *.log
+out.txt
 
 ## Obj-C/Swift specific
 *.hmap
